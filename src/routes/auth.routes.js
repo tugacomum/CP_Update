@@ -12,6 +12,8 @@ import reg6 from "../pages/Auth/reg6";
 import verifyemail from "../pages/Auth/verifyemailcode";
 import requestrecoverpassword from "../pages/Auth/requestrecoverpass";
 import recoverpassword from "../pages/Auth/recoverpassword";
+import SignUp1 from "../pages/Auth/signup1";
+import VerifyEmailaftersignup from "../pages/Auth/verifyemail";
 
 import { StatusBar } from "react-native";
 const AuthStack = createStackNavigator();
@@ -19,7 +21,7 @@ const AuthStack = createStackNavigator();
 export default function AuthRoutes() {
     return (
         <>
-            <StatusBar backgroundColor={'#262626'} barStyle='auto' translucent={true} />
+            <StatusBar backgroundColor={'#262626'} barStyle='auto' translucent={true}/>
             <AuthStack.Navigator screenOptions={{ headerShown: false }}>
                 <AuthStack.Screen name="Reg0" component={reg0} />
                 <AuthStack.Screen name="Reg1" component={reg1} />
@@ -29,7 +31,9 @@ export default function AuthRoutes() {
                 <AuthStack.Screen name="Reg5" component={reg5} />
                 <AuthStack.Screen name="Reg6" component={reg6} />
                 <AuthStack.Screen name="SignIn" component={signin} />
+                <AuthStack.Screen name="SignUp1" component={SignUp1} />
                 <AuthStack.Screen name="SignUp" component={signup} />
+                <AuthStack.Screen name="VerifyEmailaftersignup" component={VerifyEmailaftersignup} />
                 <AuthStack.Screen name="RequestRecoverPassword" component={requestrecoverpassword} />
                 <AuthStack.Screen name="RecoverPassword" component={recoverpassword} />
                 <AuthStack.Screen name="VerifyEmail" component={verifyemail} />

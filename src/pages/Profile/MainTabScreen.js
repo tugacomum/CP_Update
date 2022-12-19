@@ -9,6 +9,7 @@ import Reg3 from '../Auth/reg3';
 import Reg4 from '../Auth/reg4';
 import Reg5 from '../Auth/reg5';
 import Reg6 from '../Auth/reg6';
+import Workout from './../Library/workout';
 const ProfileStack = createStackNavigator();
 
 const MainTabScreen = () => {
@@ -17,9 +18,10 @@ const MainTabScreen = () => {
       <ProfileStack.Navigator
         screenOptions={{
           headerShown: false,
+          headerTintColor: 'white',
           headerStyle: {
-            backgroundColor: 'transparent',
-            height: 0,
+              backgroundColor: '#D21E1F',
+              height: 0,
           }
         }}>
         <ProfileStack.Screen
@@ -56,6 +58,18 @@ const MainTabScreen = () => {
           name="Reg6"
           component={Reg6}
         />
+        <ProfileStack.Screen
+        name="Workouts"
+        options={{
+          title: 'Treinos',
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#D21E1F',
+            height: 55
+          },
+        }}
+        component={Workout}
+      />
       </ProfileStack.Navigator>
     </>
   );

@@ -1,26 +1,27 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import LibraryScreen from './LibraryScreen';
-import {useTheme} from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import Exercise from './exercise';
 import Program from './program';
-import DescExercise from './descexercise';
+import Shop from './shop';
+import Workout from './workout';
+
 const ProfileStack = createStackNavigator();
 
 const MainTabScreen = ({navigation}) => {
-  const {colors} = useTheme();
-
+  const { colors } = useTheme();
   return (
     <ProfileStack.Navigator
-    screenOptions={{
-      headerShown: false,
-      headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: '#D21E1F',
-            height: 50,
-          }
-    }}>
-        <ProfileStack.Screen
+      screenOptions={{
+        headerShown: false,
+        headerTintColor: 'white',
+        headerStyle: {
+          backgroundColor: '#D21E1F',
+          height: 55,
+        },
+      }}>
+      <ProfileStack.Screen
         name="Library"
         component={LibraryScreen}
       />
@@ -36,15 +37,26 @@ const MainTabScreen = ({navigation}) => {
         name="Program"
         options={{
           title: ' Programas',
+          headerShown: true
         }}
         component={Program}
       />
       <ProfileStack.Screen
-        name="DescExercise"
+        name="Workout"
         options={{
-          title: 'DescExercise',
+          title: 'Treinos',
+          headerShown: true
         }}
-        component={DescExercise}
+        component={Workout}
+      />
+      <ProfileStack.Screen
+        name="Shop"
+        options={{
+          title: 'Loja',
+          headerTitleAlign: 'center',
+          headerShown: false,
+        }}
+        component={Shop}
       />
     </ProfileStack.Navigator>
   );

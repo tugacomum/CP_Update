@@ -3,15 +3,38 @@ import React from 'react'
 import { View, Text, StyleSheet, ImageBackground, TextInput } from 'react-native';
 import { Dimensions } from 'react-native';
 import { useRef } from 'react';
+import { Alert } from 'react-native';
+import { useState } from 'react';
 
 const testee = Dimensions.get('window').height / 6
 const teste = Dimensions.get('window').width / 1
 const testeee = Dimensions.get('window').width / 5
 
-export default function Reg6({ navigation }) {
+export default function Reg6({ navigation, route }) {
     const ref_input2 = useRef();
     const ref_input3 = useRef();
     const ref_input4 = useRef();
+    const [pull, setPull] = useState();
+    const [push, setPush] = useState();
+    const [squads, setSquads] = useState();
+    const [dips, setDips] = useState();
+    var genero = route.params.genero;
+    var peso = route.params.peso;
+    var altura = route.params.altura;
+    var levelfitness = route.params.levelfitness;
+    var objetivos = route.params.objetivos;
+    
+    function verify() {
+        try {
+            if (pull == null || push == null || squads == null || dips == null)
+                Alert.alert("Preencha todos os campos.");
+            else
+                navigation.navigate('SignUp1', {genero: genero, peso: peso, altura: altura, levelfitness: levelfitness, objetivos: objetivos, pull: pull, push: push, squads: squads, dips: dips});
+        }
+        catch (err) {
+            Alert.alert("Erro: {0}", err);
+        }
+    }
     return (
         <View>
             <ImageBackground
@@ -23,25 +46,25 @@ export default function Reg6({ navigation }) {
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.textperformance}>Máx. PullUps:</Text>
                         <View style={{ padding: 20 }}></View>
-                        <TextInput keyboardType='numeric' style={styles.intput1} onSubmitEditing={() => ref_input2.current.focus()} returnKeyType="next"></TextInput></View>
+                        <TextInput keyboardType='numeric' style={styles.intput1} value={pull} onChangeText={(text) => setPull(text)} onSubmitEditing={() => ref_input2.current.focus()} returnKeyType="next"></TextInput></View>
                     <View style={{ padding: 5 }}></View>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.textperformance}>Máx. PushUps:</Text>
                         <View style={{ padding: 20 }}></View>
-                        <TextInput keyboardType='numeric' style={styles.intput2} ref={ref_input2} onSubmitEditing={() => ref_input3.current.focus()} returnKeyType="next"></TextInput></View>
+                        <TextInput keyboardType='numeric' style={styles.intput2} value={push} onChangeText={(text) => setPush(text)} ref={ref_input2} onSubmitEditing={() => ref_input3.current.focus()} returnKeyType="next"></TextInput></View>
                     <View style={{ padding: 5 }}></View>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.textperformance}>Máx. Squads:</Text>
                         <View style={{ padding: 20 }}></View>
-                        <TextInput keyboardType='numeric' style={styles.intput3} ref={ref_input3} onSubmitEditing={() => ref_input4.current.focus()} returnKeyType="next"></TextInput></View>
+                        <TextInput keyboardType='numeric' style={styles.intput3} value={squads} onChangeText={(text) => setSquads(text)} ref={ref_input3} onSubmitEditing={() => ref_input4.current.focus()} returnKeyType="next"></TextInput></View>
                     <View style={{ padding: 5 }}></View>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.textperformance}>Máx. Dips:</Text>
                         <View style={{ padding: 20 }}></View>
-                        <TextInput keyboardType='numeric' style={styles.intput4} ref={ref_input4} returnKeyType="done"></TextInput></View>
+                        <TextInput keyboardType='numeric' style={styles.intput4} value={dips} onChangeText={(text) => setDips(text)} ref={ref_input4} returnKeyType="done"></TextInput></View>
                 </View>
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                    <Button onPress={() => navigation.navigate('SignUp')} style={styles.btnregister}>
+                    <Button onPress={verify} style={styles.btnregister}>
                         <Text style={styles.textregister}>Próximo</Text>
                     </Button>
                 </View>

@@ -18,7 +18,6 @@ export function AuthProvider({ children }) {
             }).then(r => r.data);
             api.defaults.headers['authorization'] = `Bearer ${token}`;
             AsyncStorage.setItem('@calistenia_pt:token', token);
-            console.log(token);
             setUser(user);
         } catch (err) {
             Alert.alert("Erro", err.response.data.message);
@@ -27,18 +26,16 @@ export function AuthProvider({ children }) {
 
     async function checkToken() {
         const token = await AsyncStorage.getItem('@calistenia_pt:token');
-        console.log(token);
         if (token) {
             api.defaults.headers['authorization'] = `Bearer ${token}`;
             const user = await api.get('profile').then(r => r.data);
-            
             setUser(user);
-        }
-        
+        }  
     }
 
     function logout() {
         setUser(null);
+        AsyncStorage.removeItem('@calistenia_pt:token');
         delete api.defaults.headers['authorization'];
     }
 

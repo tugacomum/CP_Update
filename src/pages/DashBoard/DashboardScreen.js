@@ -45,19 +45,19 @@ export default function dashboard({ navigation }) {
                         highlightDateNumberStyle={{ color: '#D21E1F' }}
                     />
                     <Text style={{ color: 'black', fontSize: 15, paddingTop: 20 }}>A minha biblioteca</Text>
-                    <View style={{ top: 20, borderWidth: 1, borderColor: 'white', borderRadius: 10, height: 60, backgroundColor: 'white', fontWeight: 'bold', color: 'black', textAlignVertical: 'center', fontSize: 15, paddingLeft: 25, shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 }, elevation: 5, flexDirection: 'row' }}>
+                    <View onPress={() => navigation.navigate('ListWorkoutUser')} style={{ top: 20, borderWidth: 1, borderColor: 'white', borderRadius: 10, height: 60, backgroundColor: 'white', fontWeight: 'bold', color: 'black', textAlignVertical: 'center', fontSize: 15, paddingLeft: 25, shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 }, elevation: 5, flexDirection: 'row' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 15, textAlignVertical: 'center' }}>Treinos</Text>
-                        <MaterialCommunityIcons name="arrow-right" color='black' size={20} onPress={() => navigation.navigate('EditProfile')} style={{ textAlignVertical: 'center', paddingLeft: Dimensions.get('window').width / 1.6 }} />
+                        <MaterialCommunityIcons onPress={() => navigation.navigate('ListWorkoutUser')} name="arrow-right" color='black' size={20} style={{ textAlignVertical: 'center', paddingLeft: Dimensions.get('window').width / 1.6 }} />
                     </View>
                     <View style={{ padding: 10 }}></View>
-                    <View style={{ top: 20, borderWidth: 1, borderColor: 'white', borderRadius: 10, height: 60, backgroundColor: 'white', fontWeight: 'bold', color: 'black', textAlignVertical: 'center', fontSize: 15, paddingLeft: 25, shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 }, elevation: 5, flexDirection: 'row' }}>
+                    <View onPress={() => navigation.navigate('ListProgramUser')} style={{ top: 20, borderWidth: 1, borderColor: 'white', borderRadius: 10, height: 60, backgroundColor: 'white', fontWeight: 'bold', color: 'black', textAlignVertical: 'center', fontSize: 15, paddingLeft: 25, shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 }, elevation: 5, flexDirection: 'row' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 15, textAlignVertical: 'center' }}>Programas</Text>
-                        <MaterialCommunityIcons name="arrow-right" color='black' size={20} onPress={() => navigation.navigate('EditProfile')} style={{ textAlignVertical: 'center', paddingLeft: Dimensions.get('window').width / 1.78 }} />
+                        <MaterialCommunityIcons onPress={() => navigation.navigate('ListProgramUser')} name="arrow-right" color='black' size={20} style={{ textAlignVertical: 'center', paddingLeft: Dimensions.get('window').width / 1.78 }} />
                     </View>
                     <View style={{ padding: 10 }}></View>
-                    <View style={{ top: 20, borderWidth: 1, borderColor: 'white', borderRadius: 10, height: 60, backgroundColor: 'white', fontWeight: 'bold', color: 'black', textAlignVertical: 'center', fontSize: 15, paddingLeft: 25, shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 }, elevation: 5, flexDirection: 'row' }}>
+                    <View onPress={() => navigation.navigate('ListExerciseUser')} style={{ top: 20, borderWidth: 1, borderColor: 'white', borderRadius: 10, height: 60, backgroundColor: 'white', fontWeight: 'bold', color: 'black', textAlignVertical: 'center', fontSize: 15, paddingLeft: 25, shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 }, elevation: 5, flexDirection: 'row' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 15, textAlignVertical: 'center' }}>Exercícios</Text>
-                        <MaterialCommunityIcons name="arrow-right" color='black' size={20} onPress={() => navigation.navigate('EditProfile')} style={{ textAlignVertical: 'center', paddingLeft: Dimensions.get('window').width / 1.74 }} />
+                        <MaterialCommunityIcons onPress={() => navigation.navigate('ListExerciseUser')} name="arrow-right" color='black' size={20} style={{ textAlignVertical: 'center', paddingLeft: Dimensions.get('window').width / 1.74 }} />
                     </View>
                     <View style={{padding: 20}}></View>
                 </View>

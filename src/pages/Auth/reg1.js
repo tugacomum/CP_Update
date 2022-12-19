@@ -3,12 +3,33 @@ import React from 'react'
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { Dimensions } from 'react-native';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 
 const teste = Dimensions.get('window').height / 1.66
 const testee = Dimensions.get('window').height / 4
 
 export default function Reg1({ navigation }) {
     const [index, setIndex] = useState(0);
+    var genero = "";
+    function verify () {
+        try {
+            if(index==0)
+                Alert.alert("Selecione o seu género.");
+            else if (index==1)
+            {
+                genero = "Mulher";
+                navigation.navigate('Reg2', {paramKey:  genero});
+            }
+            else if (index==2)
+            {
+                genero = "Homem";
+                navigation.navigate('Reg2', {paramKey: genero});
+            }
+        }
+        catch (err) {
+            Alert.alert("Erro: {0}", err);
+        }
+    }
     return (
         <View>
             <ImageBackground
@@ -32,7 +53,7 @@ export default function Reg1({ navigation }) {
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                    <Button onPress={() => navigation.navigate('Reg2')} style={styles.btnregister}>
+                    <Button onPress={verify} style={styles.btnregister}>
                         <Text style={styles.textregister}>Próximo</Text>
                     </Button>
                 </View>

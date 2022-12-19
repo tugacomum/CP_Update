@@ -7,9 +7,10 @@ import Profile from '../pages/Profile/MainTabScreen';
 import Maps from '../pages/Maps/MainTabScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StatusBar,  View } from 'react-native';
+
 const Tab = createBottomTabNavigator();
 
-export default function AppRoutes({navigation}) {
+export default function AppRoutes() {
   return (
     <>
       <StatusBar backgroundColor={'#9A0101'} barStyle='light-content' translucent={false} />

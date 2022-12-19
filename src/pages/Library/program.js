@@ -1,49 +1,48 @@
 import React from 'react';
-import { Searchbar } from 'react-native-paper';
-import { StyleSheet, ScrollView, RefreshControl } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { View } from 'react-native';
-
-const wait = (timeout) => {
-    return new Promise(resolve => setTimeout(resolve, timeout));
-  }
+import { api } from '../../services/api';
+import Programs from '../../components/program';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Alert } from 'react-native';
 
 export default function Program() {
-    const [refreshing, setRefreshing] = React.useState(false);
-
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
-    const [searchQuery, setSearchQuery] = React.useState('');
-    const onChangeSearch = query => setSearchQuery(query);
-    return (
-        <ScrollView refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
-          }>
-        <View style={{margin: 20}}>
-        <Searchbar
-            placeholder="Procurar programas"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-        /></View>
-        </ScrollView>
-    );
+  const [programs, setPrograms] = useState([]);
+  useEffect(() => {
+    getPrograms()
+  }, [])
+  const getPrograms = async () => {
+    try {
+      const response = await api.get('programsonly').then(r => r.data);
+      setPrograms(response);
+    } catch (err) {
+      Alert.alert('Erro', err.message);
+    }
+  }
+  return (
+    <ScrollView>
+      <View>
+        {
+          programs.map(item => <Programs data={item} />)
+        }
+      </View>
+      <View style={{height: 50}}></View>
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 25,
-        fontWeight: 'bold'
-    },
-    view: {
-        margin: 10,
-    },
+  container: { 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 25,
+    fontWeight: 'bold'
+  },
+  view: {
+    margin: 10,
+  },
 });

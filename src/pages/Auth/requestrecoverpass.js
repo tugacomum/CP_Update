@@ -15,14 +15,9 @@ export default function RequestRecoverPassword({ route, navigation }) {
     const handleRecoverPassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post(URL_REGISTO, JSON.stringify({ login }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
+            await api.post('recover/send', { login });
             Alert.alert('Recupera a tua password com o email que enviámos')
-            navigation.navigate('RecoverPassword')
+            navigation.navigate('RecoverPassword', {login: login})
         } catch (err) {
             Alert.alert('Erro', err.response.data.message)
         }

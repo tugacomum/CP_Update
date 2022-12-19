@@ -3,19 +3,51 @@ import React from 'react'
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { Dimensions } from 'react-native';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 
 const teste = Dimensions.get('window').height / 2.22
 const testee = Dimensions.get('window').height / 5
 
-export default function Reg5({ navigation }) {
+export default function Reg5({ navigation, route }) {
     const [index, setIndex] = useState(0);
+    var teste = "";
+    var genero = route.params.genero;
+    var peso = route.params.peso;
+    var altura = route.params.altura;
+    var levelfitness = route.params.levelfitness;
+    function verify() {
+        try {
+            if (index == 0)
+                Alert.alert("Indique o seu objetivo.");
+            if (index == 1) {
+                teste = "Construir força";
+                navigation.navigate('Reg6', {genero: genero, peso: peso, altura: altura, levelfitness: levelfitness, objetivos: teste});               
+            }
+            else if (index == 2) {
+                teste = "Construir músculos";
+                navigation.navigate('Reg6', {genero: genero, peso: peso, altura: altura, levelfitness: levelfitness, objetivos: teste});
+                
+            }
+            else if (index == 3) {
+                teste = "Perder peso";
+                navigation.navigate('Reg6', {genero: genero, peso: peso, altura: altura, levelfitness: levelfitness, objetivos: teste});
+            }
+            else if (index == 4) {
+                teste = "Aprender novas técnicas";
+                navigation.navigate('Reg6', {genero: genero, peso: peso, altura: altura, levelfitness: levelfitness, objetivos: teste});
+            }
+        }
+        catch (err) {
+            Alert.alert("Erro: {0}", err);
+        }
+    }
     return (
         <View>
             <ImageBackground
                 source={require('./../../../assets/img/teste5.jpg')}
                 style={styles.img}>
                 <Text style={styles.textTitle}>Calistenia Portugal</Text>
-                <Text style={styles.textG}>Objetivos</Text>
+                <Text style={styles.textG}>Objetivo</Text>
                 <View style={styles.container}>
                     <TouchableOpacity style={{
                         top: -15,
@@ -80,7 +112,7 @@ export default function Reg5({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                    <Button onPress={() => navigation.navigate('Reg6')} style={styles.btnregister}>
+                    <Button onPress={verify} style={styles.btnregister}>
                         <Text style={styles.textregister}>Próximo</Text>
                     </Button></View>
             </ImageBackground>

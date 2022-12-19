@@ -1,6 +1,6 @@
 import { Input, Item, ListItem, Button, Body, Label } from "native-base";
 import React, { useState } from "react";
-import { Text, ScrollView, ImageBackground, Dimensions, View, StyleSheet, TextInput } from 'react-native';
+import { Text, ScrollView, ImageBackground, Dimensions, View, StyleSheet } from 'react-native';
 import { useAuth } from "../../contexts/auth";
 
 export default function SignIn({ navigation }) {

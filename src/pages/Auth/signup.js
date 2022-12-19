@@ -6,23 +6,41 @@ import { Label } from "native-base";
 import { api } from "../../services/api";
 import { Alert } from "react-native";
 
-export default function SignUp({navigation}) {
+export default function SignUp({ navigation, route }) {
     const URL_REGISTO = 'register';
     const [nickname, setNickname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    var gender = route.params.genero;
+    var weight = route.params.peso;
+    var height = route.params.altura;
+    var fitnesslevel = route.params.levelfitness;
+    var goals = route.params.objetivos;
+    var pullup = route.params.pull;
+    var pushup = route.params.push;
+    var squads = route.params.squads;
+    var dips = route.params.dips;
+    var name = route.params.name;
+    var surname = route.params.surname;
+    var city = route.params.cidade;
+    var adress = route.params.morada;
+
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post(URL_REGISTO, JSON.stringify({ nickname, email, password}),
-                {
-                    headers: { 'Content-Type' : 'application/json' },
-                    withCredentials: true
-                }
-            );
-            navigation.navigate('SignIn')
-            Alert.alert('Verifica a tua conta com o email que enviámos')
+            if (nickname.length < 6)
+                Alert.alert("O seu nickname deve conter pelo menos 6 caracteres.");
+            else if (email.length == 0)
+                Alert.alert("Introduza um email válido.");
+            else if (password.length < 8)
+                Alert.alert("A password deve conter pelo menos 8 caracteres.");
+            else {
+                await api.post(URL_REGISTO, { nickname, email, password, goals, gender, weight, height, fitnesslevel, pullup, pushup, squads, dips, name, surname, city, adress });
+                navigation.navigate('VerifyEmailaftersignup', {email: email});
+                Alert.alert('Verifica a tua conta com o email que enviámos');
+            }
         } catch (err) {
+            console.log(err)
             Alert.alert('Erro', err.response.data.message)
         }
     }
@@ -46,16 +64,16 @@ export default function SignUp({navigation}) {
                     <Text>Junta-te a nós e torna-te um mestre na Calistenia!</Text>
                     <View style={{ marginTop: 0 }}>
                         <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
-                            <Label>Username</Label>
-                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setNickname(text)} value={nickname} />
+                            <Label>Nickname</Label>
+                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setNickname(text)} value={nickname} style={{ top: 5 }} />
                         </Item>
                         <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
                             <Label>Email</Label>
-                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setEmail(text)} value={email} />
+                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setEmail(text)} value={email} style={{ top: 5 }} />
                         </Item>
                         <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
                             <Label>Password</Label>
-                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setPassword(text)} value={password}  secureTextEntry={true} />
+                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setPassword(text)} value={password} secureTextEntry={true} style={{ top: 5 }} />
                         </Item>
                     </View>
                     <View style={{ height: 100, justifyContent: 'center', alignItems: 'center' }}>
@@ -99,6 +117,6 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width / 2,
         justifyContent: 'center',
         borderRadius: 10,
-        top:20
+        top: 20
     }
 });

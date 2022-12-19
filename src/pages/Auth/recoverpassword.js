@@ -10,9 +10,10 @@ import { Input, Item } from "native-base";
 import { Label } from "native-base";
 import { TextInput } from 'react-native-gesture-handler';
 import { useRef } from 'react';
+
 export default function RecoverPassword({ route, navigation }) {
+    var login = route.params.login;
     const URL_REGISTO = 'recover';
-    const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [teste1, setTeste1] = useState('');
     const [teste2, setTeste2] = useState('');
@@ -61,10 +62,6 @@ export default function RecoverPassword({ route, navigation }) {
                     <Text style={{ color: '#D21E1F', fontSize: 32 }}>Recuperar password</Text>
                     <Text>Recupera a tua password</Text>
                     <View style={{ marginTop: 22 }}>
-                        <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
-                            <Label>Email</Label>
-                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setLogin(text)} value={login} />
-                        </Item>
                         <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
                             <Label>Password nova</Label>
                             <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setPassword(text)} value={password} secureTextEntry={true}/>

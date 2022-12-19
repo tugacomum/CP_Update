@@ -2,7 +2,7 @@
   "expo": {
     "name": "Calistenia Portugal",
     "slug": "CalisteniaPortugal",
-    "version": "1.0.0",
+    "version": "2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,12 +19,17 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
+    "android": {  
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.azeez.calisteniaportugal",
-      "versionCode": 1
+      "package": "com.azeezonthefloor.calisthenicsportugal",
+      "versionCode": 2,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCAc4S1FW-DnaJA2Q4Z_CpOkb_FuoPs45M"
+        }
+      }
     }
   }
 }
